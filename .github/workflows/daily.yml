@@ -2,7 +2,7 @@ name: Daily Developer Log
 
 on:
   schedule:
-    - cron: "30 12 * * *"
+    - cron: "30 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -16,24 +16,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create daily log
+      - name: Create 3 daily commits
         run: |
           DATE=$(date +%Y-%m-%d)
 
           mkdir -p daily
 
-          echo "# Daily Developer Log - $DATE" > "daily/$DATE.md"
-          echo "" >> "daily/$DATE.md"
-          echo "- Practiced coding today." >> "daily/$DATE.md"
-          echo "- Continued learning and building." >> "daily/$DATE.md"
-
-      - name: Commit changes
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add daily/
+          for i in 1 2 3
+          do
+            echo "- Daily update $i — $DATE" >> "daily/$DATE.md"
 
-          git commit -m "Daily developer log: $(date +%Y-%m-%d)"
+            git add daily/
+            git commit -m "Daily update $i: $DATE"
+          done
 
           git push
