@@ -23,9 +23,9 @@ jobs:
 
           mkdir -p daily
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
+          git config user.name "Likith999108"
+          git config user.email "174473673+Likith999108@users.noreply.github.com"
+          
           for i in 1 2 3
           do
             echo "- Daily update $i — $DATE" >> "daily/$DATE.md"
