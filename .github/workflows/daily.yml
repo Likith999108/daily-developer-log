@@ -2,7 +2,8 @@ name: Daily Developer Log
 
 on:
   schedule:
-    - cron: "30 3 * * *"
+    - cron: "0 9 * * *"
+      timezone: "Asia/Kolkata"
   workflow_dispatch:
 
 permissions:
@@ -18,7 +19,7 @@ jobs:
 
       - name: Create 3 daily commits
         run: |
-          DATE=$(date +%Y-%m-%d)
+          DATE=$(date -u +%Y-%m-%d)
 
           mkdir -p daily
 
